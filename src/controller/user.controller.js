@@ -5,7 +5,6 @@ const User = db.users;
 exports.findAll = async (req, res) => {
     try {
         const users = await User.find({});
-        console.log(users.length)
         if (users.length === 0){
             return res.status(400).send({ message: "No users in data base yet."})
         }
@@ -83,6 +82,11 @@ exports.update = async (req, res) => {
 };
 
 // Delete model by ID
-exports.delete = (req, res) => {
-
+exports.delete = async (req, res) => {
+    const id = req.params.id;
+    const deleteUser = User.findByIdAndRemove(id);
+    if (!deleteUser) {
+        return res.status(404).send({ message: "User not found."})
+    }
+    res.status(201).send("User deleted.")
 };
