@@ -16,7 +16,7 @@ exports.findAll = async (req, res) => {
 // Create model
 exports.create = (req, res) => {
     if (!req.body.username) {
-        return res.status(404).send({ message: "Content can not be empty."})
+        return res.status(404).send({ message: "Content can not be empty."});
     }
     // Create model
     const user = new User({
@@ -37,8 +37,19 @@ exports.create = (req, res) => {
 };
 
 // Find one model by ID
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const user = await User.findById(id);   
+        console.log(user);
+        if (user) {
+            return res.status(201).json(user)
+        }
+        res.status(404).send({ message: "User not found."});
+    } catch {
+        res.status(400).send({ message: "Wrong ID format."});
 
+    }
 };
 
 // Update a model 
