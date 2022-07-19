@@ -5,6 +5,10 @@ const User = db.users;
 exports.findAll = async (req, res) => {
     try {
         const users = await User.find({});
+        console.log(users.length)
+        if (users.length === 0){
+            return res.status(400).send({ message: "No users in data base yet."})
+        }
         res.send(users);
     } catch (err) {
         res.status(500).send({
