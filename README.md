@@ -7,3 +7,6 @@ S'ha d'implementar una API que contingui dos models bàsics on es puguin fer les
 + **GET**: Busca modelo por ID.
 + **PUT**: Modifica el modelo.
 + **DELETE**: Borra el modelo según la ID.
+
+## Enlaces:
++ [Make a README](https://www.makeareadme.com/)

@@ -2,7 +2,15 @@ const db = require('../model');
 const User = db.users;
 
 // Find all models
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
+    try {
+        const users = await User.find({});
+        res.json(users);
+    } catch (err) {
+        res.status(500).send({
+            message: err.message || "Some error occurred while creating a user."
+        });
+    }
 };
 
 // Create model
