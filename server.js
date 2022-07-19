@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+// Connect data base
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -18,8 +19,10 @@ db.mongoose
         process.exit();
     })
 
+// Routes
 require('./src/routes/user.routes')(app);
-    
+ 
+// Set and run port
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

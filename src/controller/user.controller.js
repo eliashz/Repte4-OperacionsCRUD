@@ -5,7 +5,7 @@ const User = db.users;
 exports.findAll = async (req, res) => {
     try {
         const users = await User.find({});
-        res.json(users);
+        res.send(users);
     } catch (err) {
         res.status(500).send({
             message: err.message || "Some error occurred while creating a user."
@@ -43,7 +43,7 @@ exports.findOne = async (req, res) => {
         const user = await User.findById(id);   
         console.log(user);
         if (user) {
-            return res.status(201).json(user)
+            return res.status(201).send(user)
         }
         res.status(404).send({ message: "User not found."});
     } catch {
@@ -53,8 +53,29 @@ exports.findOne = async (req, res) => {
 };
 
 // Update a model 
-exports.update = (req, res) => {
-  
+exports.update = async (req, res) => {
+    console.log(req.body);
+    if (!req.body._id) {
+        return res.status(400).send({
+            message: "Data to update can not be empty."
+        });
+    }
+    const id = req.body._id;
+    console.log(id);
+    try {
+        const user = await User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+        console.log(user);
+        if (!user) {
+            return res.status(404).send({
+                message: `Cannot update ID ${id}.`
+            })
+        } 
+        res.send(user)
+    } catch (err) {
+        res.status(500).send({
+            message: "Error updating user " + id
+        });
+    }   
 };
 
 // Delete model by ID
