@@ -6,8 +6,10 @@ module.exports = mongoose => {
                 username: String,
                 email: String,
             },
-            { timestamps: false }
+            {
+                versionKey: false
+            }
         )
     );
     return User;
-}
+};

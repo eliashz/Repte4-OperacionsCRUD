@@ -5,7 +5,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
-const db = require('./src/model')
 db.mongoose
     .connect(db.url, {
         useNewUrlParser: true,
@@ -18,6 +17,9 @@ db.mongoose
         console.log("Cannot connect to database", err);
         process.exit();
     })
+
+require('./src/routes/user.routes')(app);
+    
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
