@@ -2,7 +2,7 @@ const db = require('../model');
 const User = db.users;
 
 // Find all models
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
     const users = await User.find({});
     if (users.length === 0){
         return res.status(400).send({ message: "No users in data base yet."})
@@ -57,14 +57,14 @@ exports.findOne = async (req, res) => {
         }
         res.status(404).send({ message: "User not found."});
     } catch {
-        res.status(400).send({ message: "Wrong ID format."});
+        res.status(404).send({ message: "Wrong ID format."});
     }
 };
 
 // Update a model 
 exports.update = async (req, res) => {
     if (!req.body._id) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: "Data to update can not be empty."
         });
     }
@@ -89,7 +89,7 @@ exports.update = async (req, res) => {
             return res.status(404).send({ message: `ID ${id} not exists.` });
         } 
         user = await User.findById(id);
-        res.send(user)
+        res.status(201).send(user)
     } catch (err) {
         res.status(500).send({ message: "Wrong ID format." });
     }   
@@ -105,6 +105,6 @@ exports.delete = async (req, res) => {
         }
         res.status(201).send({ message: "User deleted."})
     } catch {
-        res.status(400).send({ message: "Wrong ID format."});
+        res.status(404).send({ message: "Wrong ID format."});
     }
 };

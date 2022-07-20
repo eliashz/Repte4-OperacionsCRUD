@@ -44,14 +44,14 @@ exports.findOne = async (req, res) => {
         }
         res.status(404).send({ message: "Data not found."});
     } catch {
-        res.status(400).send({ message: "Wrong ID format."});
+        res.status(404).send({ message: "Wrong ID format."});
     }
 };
 
 // Update a model 
 exports.update = async (req, res) => {
     if (!req.body._id) {
-        return res.status(400).send({
+        return res.status(404).send({
             message: "Data to update can not be empty."
         });
     }
@@ -64,7 +64,7 @@ exports.update = async (req, res) => {
             return res.status(404).send({ message: `ID ${id} not exists.` });
         } 
         job = await Job.findById(id);
-        res.send(job)
+        res.status(201).send(job)
     } catch (err) {
         res.status(500).send({ message: "Wrong ID format." });
     }   
@@ -80,6 +80,6 @@ exports.delete = async (req, res) => {
         }
         res.status(201).send({ message: "Job deleted."})
     } catch {
-        res.status(400).send({ message: "Wrong ID format."});
+        res.status(404).send({ message: "Wrong ID format."});
     }
 };
