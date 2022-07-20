@@ -2,7 +2,7 @@ const db = require('../model');
 const User = db.users;
 
 // Find all models
-exports.findAll = async (req, res, next) => {
+exports.findAll = (req, res) => {
     const users = await User.find({});
     if (users.length === 0){
         return res.status(400).send({ message: "No users in data base yet."})

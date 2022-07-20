@@ -7,5 +7,4 @@ router.get('/:id', jobs.findOne);
 router.put('/', jobs.update);
 router.delete('/:id', jobs.delete);
 
-
 module.exports = router;

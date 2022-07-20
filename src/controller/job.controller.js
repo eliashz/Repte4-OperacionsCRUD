@@ -2,7 +2,7 @@ const db = require('../model');
 const Job = db.jobs;
 
 // Find all models
-exports.findAll = async (req, res, next) => {
+exports.findAll = async (req, res) => {
     const jobs = await Job.find({});
     if (jobs.length === 0){
         return res.status(400).send({ message: "No data in data base yet."})
@@ -11,7 +11,7 @@ exports.findAll = async (req, res, next) => {
 };
 
 // Create model
-exports.create = async (req, res) => {
+exports.create = (req, res) => {
     if (!req.body.department) {
         return res.status(404).send({ message: "Content can not be empty."});
     }
