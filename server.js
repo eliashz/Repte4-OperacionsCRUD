@@ -17,7 +17,7 @@ db.mongoose
     .catch(err => {
         console.log("Cannot connect to database", err);
         process.exit();
-    })
+    });
 
 // Routes
 app.use('/api/users', require('./src/routes/user.routes'));
@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
-    res.json({ error: {message: error.message} })
+    res.json({ error: {message: error.message} });
 }); 
 
 // Set and run port

@@ -52,7 +52,6 @@ exports.findOne = async (req, res) => {
     const id = req.params.id;
     try {
         const user = await User.findById(id);   
-        console.log(user);
         if (user) {
             return res.status(201).send(user)
         }
