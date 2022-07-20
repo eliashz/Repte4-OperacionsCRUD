@@ -3,8 +3,8 @@ module.exports = mongoose => {
         'job',
         mongoose.Schema(
             {
-                name: String,
                 department: String,
+                startDate: {type: Date, default: Date.now}
             },
             {
                 versionKey: false

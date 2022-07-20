@@ -20,8 +20,15 @@ db.mongoose
     })
 
 // Routes
-require('./src/routes/user.routes')(app);
- 
+app.use('/api/users', require('./src/routes/user.routes'));
+
+// Error handling
+app.use((req, res, next) => {
+    const error = new Error('Not Found');
+    error.status = 404;
+    next(error);
+});
+
 // Set and run port
 const PORT = 3000;
 app.listen(PORT, () => {

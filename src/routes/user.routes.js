@@ -1,11 +1,10 @@
-module.exports = app => {
-    const users = require('../controller/user.controller');
-    const router = require('express').Router();
+const users = require('../controller/user.controller');
+const router = require('express').Router();
 
-    router.post('/', users.create);
-    router.get('/', users.findAll);
-    router.get('/:id', users.findOne);
-    router.put('/', users.update);
+router.post('/', users.create);
+router.get('/', users.findAll);
+router.get('/:id', users.findOne);
+router.put('/', users.update);
+router.delete('/', users.delete);
 
-    app.use('/api/users', router);
-};
+module.exports = router;
