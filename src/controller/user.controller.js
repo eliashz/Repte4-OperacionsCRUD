@@ -19,13 +19,13 @@ exports.create = async (req, res) => {
     // Check if the name exists
     const findName = await User.find({ username: req.body.username});
     if (findName.length !== 0) {
-        return res.status(404).send({ message: "Name used."});
+        return res.status(404).send({ message: "Username used."});
     }
 
     // Check if the e-mail exists
     const findEmail = await User.find({ email: req.body.email});
     if (findEmail.length !== 0) {
-        return res.status(404).send({ message: "Email used."});
+        return res.status(404).send({ message: "e-mail used."});
     }
 
     // Create model
@@ -33,7 +33,7 @@ exports.create = async (req, res) => {
         username: req.body.username,
         email: req.body.email
     });
-    
+
     // Save in database
     user
         .save(user)
@@ -64,22 +64,34 @@ exports.findOne = async (req, res) => {
 
 // Update a model 
 exports.update = async (req, res) => {
-    console.log(req.body);
     if (!req.body._id) {
         return res.status(400).send({
             message: "Data to update can not be empty."
         });
     }
+
+    // Check if the name exists
+    const findName = await User.find({ username: req.body.username});
+    if (findName.length !== 0) {
+        return res.status(404).send({ message: "Username used."});
+    }
+
+    // Check if the e-mail exists
+    const findEmail = await User.find({ email: req.body.email});
+    if (findEmail.length !== 0) {
+        return res.status(404).send({ message: "e-mail used."});
+    }
+
     const id = req.body._id;
-    console.log(id);
     try {
-        const user = await User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
-        console.log(user);
+        let user = await User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+   
         if (!user) {
             return res.status(404).send({
                 message: `Cannot update ID ${id}.`
             })
         } 
+        user = await User.findById(id);
         res.send(user)
     } catch (err) {
         res.status(500).send({
