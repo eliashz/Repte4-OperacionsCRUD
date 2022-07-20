@@ -87,16 +87,12 @@ exports.update = async (req, res) => {
         let user = await User.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
    
         if (!user) {
-            return res.status(404).send({
-                message: `Cannot update ID ${id}.`
-            })
+            return res.status(404).send({ message: `ID ${id} not exists.` });
         } 
         user = await User.findById(id);
         res.send(user)
     } catch (err) {
-        res.status(500).send({
-            message: "Error updating user " + id
-        });
+        res.status(500).send({ message: "Wrong ID format." });
     }   
 };
 

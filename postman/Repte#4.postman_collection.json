@@ -8,18 +8,8 @@
 		{
 			"name": "/ users",
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"tool\",\r\n    \"email\": \"tool@gmail.com\"\r\n}"
-				},
+				"method": "GET",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/api/users",
 					"protocol": "http",
@@ -38,8 +28,18 @@
 		{
 			"name": "/ users",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Elías\",\r\n    \"email\": \"ehz@gmail.com\"\r\n}"
+				},
 				"url": {
 					"raw": "http://localhost:3000/api/users",
 					"protocol": "http",
@@ -108,6 +108,128 @@
 		},
 		{
 			"name": "/ users/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/62d7ac2b4c8f8cac9b8432f1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"62d7ac2b4c8f8cac9b8432f1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/ jobs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/ jobs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"department\": \"IT\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/ jobs/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/jobs/62d68f3b1f07c0a7763206ca",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jobs",
+						"62d68f3b1f07c0a7763206ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/ jobs",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"62d68f3b1f07c0a7763206ca\",\r\n    \"department\": \"Sales\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/ jobs/:id",
 			"request": {
 				"method": "DELETE",
 				"header": [],
