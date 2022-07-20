@@ -11,5 +11,5 @@ module.exports = mongoose => {
             }
         )
     );
-    return User;
+    return Job;
 };
