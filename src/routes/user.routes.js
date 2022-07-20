@@ -5,6 +5,6 @@ router.post('/', users.create);
 router.get('/', users.findAll);
 router.get('/:id', users.findOne);
 router.put('/', users.update);
-router.delete('/', users.delete);
+router.delete('/:id', users.delete);
 
 module.exports = router;

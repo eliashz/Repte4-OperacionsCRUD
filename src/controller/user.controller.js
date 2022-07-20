@@ -51,7 +51,6 @@ exports.findOne = async (req, res) => {
         res.status(404).send({ message: "User not found."});
     } catch {
         res.status(400).send({ message: "Wrong ID format."});
-
     }
 };
 
@@ -84,9 +83,13 @@ exports.update = async (req, res) => {
 // Delete model by ID
 exports.delete = async (req, res) => {
     const id = req.params.id;
-    const deleteUser = User.findByIdAndRemove(id);
-    if (!deleteUser) {
-        return res.status(404).send({ message: "User not found."})
+    try {
+        const deleteUser = await User.findByIdAndRemove(id);
+        if (!deleteUser) {
+            return res.status(404).send({ message: "User not found."})
+        }
+        res.status(201).send({ message: "User deleted."})
+    } catch {
+        res.status(400).send({ message: "Wrong ID format."});
     }
-    res.status(201).send("User deleted.")
 };
