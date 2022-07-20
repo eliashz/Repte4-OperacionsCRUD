@@ -5,7 +5,7 @@ Se ha usado Node.js, Express y Mongo DB para la persistencia de los datos.
 ### Instrucciones:
 Antes de la ejecución de la API será necesario tener instalado [Node.js](https://nodejs.org/es/) y [Postman](https://www.postman.com/). 
 1. ``npm i`` para instalar las dependencias.
-2. ``npm run start`` para iniciar. 
+2. ``npm start`` para iniciar. 
 3. Importar en Postman el archivo *Repte#4.postman_collection.json* que hay dentro de la carpeta *postman*.
 
 ### Rutas:
