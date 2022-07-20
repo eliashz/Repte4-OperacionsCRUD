@@ -1,10 +1,10 @@
-const jobs = require('../controller/job.controller');
+const user = require('../controller/user.controller');
 const router = require('express').Router();
 
-router.post('/', jobs.create);
-router.get('/', jobs.findAll);
-router.get('/:id', jobs.findOne);
-router.put('/', jobs.update);
-router.put('/', jobs.update);
+router.get('/', user.findAll);
+router.post('/', user.create);
+router.get('/:id', user.findOne);
+router.put('/', user.update);
+router.put('/', user.update);
 
 module.exports = router;

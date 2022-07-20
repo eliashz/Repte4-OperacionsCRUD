@@ -21,6 +21,7 @@ db.mongoose
 
 // Routes
 app.use('/api/users', require('./src/routes/user.routes'));
+app.use('/api/jobs', require('./src/routes/job.routes'));
 
 // Error handling
 app.use((req, res, next) => {
